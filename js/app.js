@@ -107,10 +107,16 @@ async function sendMessage() {
     const data = await response.json();
     const reply = data.content.map(b => b.text || '').join('');
 
-    // Parse JSON response
+    // Parse JSON response - strip markdown code blocks and whitespace
+    let jsonStr = reply.trim();
+    // Remove markdown code block if present
+    jsonStr = jsonStr.replace(/^```json\s*/, '').replace(/\s*```$/, '');
+    jsonStr = jsonStr.replace(/^```\s*/, '').replace(/\s*```$/, '');
+    jsonStr = jsonStr.trim();
+    
     let quoteData = { quote: reply, source: 'Unknown' };
     try {
-      quoteData = JSON.parse(reply);
+      quoteData = JSON.parse(jsonStr);
     } catch (e) {
       // If not valid JSON, display as is
       quoteData = { quote: reply, source: 'Unknown' };
