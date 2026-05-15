@@ -1,0 +1,242 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: #1a1a2e;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #f0ece3;
+}
+
+.app-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+}
+
+.therapist-img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+}
+
+.speech-bubble {
+  position: absolute;
+  top: 26%;
+  left: 43%;
+  width: fit-content;
+  max-width: 22%;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a2e;
+  border-radius: 16px;
+  padding: 10px 14px 8px;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  line-height: 1.5;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  z-index: 10;
+  transition: opacity 0.25s ease;
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  bottom: 12px;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 12px solid rgba(255,255,255,0.95);
+}
+
+.speech-bubble.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bubble-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 11px;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+}
+.bubble-close:hover { color: #333; }
+
+#bubbleText {
+  margin-right: 16px;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.input-panel {
+  position: absolute;
+  top: 2%;
+  right: 3%;
+  width: 36%;
+  background: rgba(10, 10, 25, 0.80);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 10px;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+#userInput {
+  flex: 1;
+  resize: none;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: 'Lato', sans-serif;
+  color: #f0ece3;
+  min-height: 36px;
+  line-height: 1.5;
+  transition: border-color 0.2s;
+  overflow-y: hidden;
+}
+#userInput:focus { outline: none; border-color: #1D9E75; }
+#userInput::placeholder { color: rgba(255,255,255,0.25); }
+
+#sendBtn {
+  background: #1D9E75;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  cursor: pointer;
+  height: 36px;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+  align-self: flex-end;
+}
+#sendBtn:hover { background: #17856A; }
+#sendBtn:active { transform: scale(0.97); }
+#sendBtn:disabled { background: #444; cursor: not-allowed; }
+
+.disclaimer {
+  font-size: 10px;
+  color: rgba(255,255,255,0.2);
+  text-align: center;
+  padding-top: 6px;
+  font-style: italic;
+}
+
+.therapist-name {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.therapist-name h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 500;
+  color: #e8d5b0;
+}
+
+.therapist-name p {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  margin-top: 3px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.therapist-name a { color: #9FE1CB; text-decoration: none; }
+.therapist-name a:hover { text-decoration: underline; }
+
+.typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 0 2px;
+}
+.dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #1a1a2e;
+  opacity: 0.4;
+  animation: bounce 1.2s infinite;
+}
+.dot:nth-child(2) { animation-delay: 0.2s; }
+.dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-4px); }
+}
+
+.quote-text {
+  font-size: 11px;
+  line-height: 1.55;
+  margin: 0 0 10px 0;
+  font-style: italic;
+  color: #1a1a2e;
+}
+
+.reveal-source-btn {
+  background: none;
+  border: 1px solid #1a1a2e;
+  color: #1a1a2e;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 10px;
+  font-family: 'Lato', sans-serif;
+  cursor: pointer;
+  margin: 8px 0 6px 0;
+  transition: background 0.2s, color 0.2s;
+  display: block;
+}
+.reveal-source-btn:hover {
+  background: #1a1a2e;
+  color: #fff;
+}
+.reveal-source-btn:active {
+  transform: scale(0.95);
+}
+
+.source-text {
+  font-size: 10px;
+  color: #666;
+  margin: 6px 0 0 0;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.source-text.hidden {
+  display: none;
+}
+
+@media (max-width: 700px) {
+  .speech-bubble { position: relative; top: auto; left: auto; width: 100%; border-radius: 0; }
+  .speech-bubble::before { display: none; }
+  .input-panel { position: relative; top: auto; right: auto; width: 100%; border-radius: 0; }
+  .therapist-name { bottom: auto; top: 10px; left: 10px; }
+}

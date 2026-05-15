@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Terri\\\\AppData\\\\Local\\\\\" -Directory -Depth 1 | Where-Object { $_.Name -match \"git|github\" } | Select-Object FullName)",
+      "PowerShell($env:PATH -split ';' | Where-Object { $_ -match \"git\" })",
+      "PowerShell(& \"C:\\\\Users\\\\Terri\\\\AppData\\\\Local\\\\GitHubDesktop\\\\app-3.5.8\\\\GitHubDesktop.exe\" --version 2>&1)",
+      "PowerShell($env:GIT_EXEC_PATH)",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git fetch *)",
+      "Bash(git checkout *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git branch *)",
+      "Bash(git pull *)",
+      "Bash(git push *)"
+    ]
+  }
+}
