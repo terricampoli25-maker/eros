@@ -99,6 +99,11 @@ async function sendMessage() {
       })
     });
 
+    if (response.status === 403) {
+      location.href = '/unlock';
+      return;
+    }
+
     if (!response.ok) {
       const err = await response.json();
       throw new Error(err.error?.message || response.statusText);

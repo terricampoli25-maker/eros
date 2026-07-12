@@ -1,0 +1,10 @@
+.assetsignore
+wrangler.toml
+worker.js
+.claude/
+.wrangler/
+.git/
+.gitattributes
+.gitignore
+functions/
+*.odt
